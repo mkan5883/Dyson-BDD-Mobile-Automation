@@ -18,8 +18,11 @@ public class WeatherSteps {
     @Given("I have an internet connection")
     public void checkInternetConnection() {
         SoftAssert softAssert = new SoftAssert();
-        String connectedText = weatherPage.getConnectionText();
-        softAssert.assertEquals(connectedText, "Connected", "Internet is Connected");
+        softAssert.assertEquals(weatherPage.getConnectionTitleText(), "Connected",
+                "Connection Title is correct");
+        softAssert.assertTrue(weatherPage.getConnectionDescriptionText().contains("You are connected to the internet"),
+                "Connection Description is correct");
+        softAssert.assertTrue(weatherPage.isFetchButtonEnabled(), "Fetch Data button is enabled");
         softAssert.assertAll();
 
     }
@@ -30,11 +33,10 @@ public class WeatherSteps {
         weatherPage.clickFetchDataButton();
         softAssert.assertTrue(weatherPage.getFetchDataTitle().equalsIgnoreCase("Data collected"),
                 "Fetch Data Title is correct");
-        /*
-Failing in IOS due to text is different
+        softAssert.assertTrue(weatherPage.getFetchDataDescription().contains("The weather data has been successfully collected"),
+                "Fetch Data Description is correct");
         softAssert.assertTrue(weatherPage.isViewResultButtonEnabled(),
                 "View Results button is enabled");
-*/
         softAssert.assertAll();
 
     }
@@ -54,7 +56,8 @@ Failing in IOS due to text is different
         String temperatureText = weatherPage.getTemperatureValue();
         //This validation should be improved by validate from an API or DB
         softAssert.assertTrue(temperatureText.equalsIgnoreCase("31.82°C"),
-                "Temperature value is in expected range");
+                "Temperature value is correct");
+        softAssert.assertTrue(weatherPage.isDoneButtonEnabled(), "Done button is enabled");
         softAssert.assertAll();
     }
 }

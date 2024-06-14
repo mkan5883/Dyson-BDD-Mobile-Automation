@@ -3,7 +3,6 @@ package pages;
 import config.Config;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,10 +21,6 @@ public class BasePage {
     public void waitForVisibility(WebElement e) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.visibilityOf(e));
-    }
-    public void waitForVisibility(By e) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(e));
     }
 
     public void click(WebElement e) {

@@ -10,6 +10,10 @@ public class WeatherPage extends BasePage {
     @iOSXCUITFindBy(accessibility = "fetch_data_title_label")
     private WebElement connectionDisplayTitle;
 
+    @AndroidFindBy(id = "com.dyson.recruitment.test:id/connection_display_description")
+    @iOSXCUITFindBy(accessibility = "fetch_data_body_label")
+    private WebElement connectionDisplayDescription;
+
     @AndroidFindBy(id = "com.dyson.recruitment.test:id/connection_display_primary_button")
     @iOSXCUITFindBy(accessibility = "Fetch Data")
     private WebElement fetchDataButton;
@@ -23,7 +27,8 @@ public class WeatherPage extends BasePage {
     private WebElement fetchDataDescription;
 
     @AndroidFindBy(id = "com.dyson.recruitment.test:id/fetch_data_primary_button")
-    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeApplication[@name=\"ConnectivityRemoteTest\"]//XCUIElementTypeWindow[1]//XCUIElementTypeOther)[5]")
+    @iOSXCUITFindBy(xpath = "(//XCUIElementTypeApplication[@name=\"ConnectivityRemoteTest\"]" +
+            "//XCUIElementTypeWindow[1]//XCUIElementTypeOther)[5]")
     private WebElement viewResultsButton;
 
     @AndroidFindBy(id = "com.dyson.recruitment.test:id/weather_display_weather_icon")
@@ -51,15 +56,23 @@ public class WeatherPage extends BasePage {
     private WebElement temperature;
 
     @AndroidFindBy(id = "com.dyson.recruitment.test:id/weather_display_primary_button")
-    @iOSXCUITFindBy(id = "//XCUIElementTypeApplication[@name=\"ConnectivityRemoteTest\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]")
+    @iOSXCUITFindBy(xpath = "//XCUIElementTypeApplication[@name=\"ConnectivityRemoteTest\"]" +
+            "/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther" +
+            "/XCUIElementTypeOther/XCUIElementTypeOther[2]")
     private WebElement doneButton;
 
     public WeatherPage(AppiumDriver driver) {
         super(driver);
     }
 
-    public String getConnectionText() {
+    public String getConnectionTitleText() {
         return getText(connectionDisplayTitle);
+    }
+    public String getConnectionDescriptionText() {
+        return getText(connectionDisplayDescription);
+    }
+    public boolean isFetchButtonEnabled() {
+        return fetchDataButton.isEnabled();
     }
 
     public void clickFetchDataButton() {
