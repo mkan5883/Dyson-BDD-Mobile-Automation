@@ -44,4 +44,3 @@ Modify the deviceName and app capabilities in config.properties to match your An
 Start an iOS simulator using Xcode.
 Modify the deviceName, platformVersion, and app capabilities in config.properties. to match your iOS simulator and application path.
 `mvn test -Dtest=runners.TestRunner`
-Troubleshooting
